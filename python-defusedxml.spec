@@ -11,7 +11,7 @@ Version:	0.4.1
 Release:	2
 License:	PSF
 Group:		Libraries/Python
-Source0:	https://pypi.python.org/packages/source/d/defusedxml/defusedxml-%{version}.tar.gz#md5=230a5eff64f878b392478e30376d673a
+Source0:	https://pypi.python.org/packages/source/d/defusedxml/defusedxml-%{version}.tar.gz
 # Source0-md5:	230a5eff64f878b392478e30376d673a
 URL:		https://pypi.python.org/pypi/defusedxml
 %if %{with python2}

@@ -1,0 +1,63 @@
+diff -ru defusedxml-0.4.1-orig/defusedxml/common.py defusedxml-0.4.1/defusedxml/common.py
+--- defusedxml-0.4.1-orig/defusedxml/common.py	2015-07-17 05:28:36.502213030 +0000
++++ defusedxml-0.4.1/defusedxml/common.py	2015-07-22 11:22:24.203648541 +0000
+@@ -30,7 +30,7 @@
+         self.pubid = pubid
+ 
+     def __str__(self):
+-        tpl = "DTDForbidden(name='{}', system_id={!r}, public_id={!r})"
++        tpl = "DTDForbidden(name='{0}', system_id={1!r}, public_id={2!r})"
+         return tpl.format(self.name, self.sysid, self.pubid)
+ 
+ 
+@@ -47,7 +47,7 @@
+         self.notation_name = notation_name
+ 
+     def __str__(self):
+-        tpl = "EntitiesForbidden(name='{}', system_id={!r}, public_id={!r})"
++        tpl = "EntitiesForbidden(name='{0}', system_id={1!r}, public_id={2!r})"
+         return tpl.format(self.name, self.sysid, self.pubid)
+ 
+ 
+@@ -62,7 +62,7 @@
+         self.pubid = pubid
+ 
+     def __str__(self):
+-        tpl = "ExternalReferenceForbidden(system_id='{}', public_id={})"
++        tpl = "ExternalReferenceForbidden(system_id='{0}', public_id={1})"
+         return tpl.format(self.sysid, self.pubid)
+ 
+ 
+diff -ru defusedxml-0.4.1-orig/other/exploit_webdav.py defusedxml-0.4.1/other/exploit_webdav.py
+--- defusedxml-0.4.1-orig/other/exploit_webdav.py	2015-07-17 05:28:36.503213033 +0000
++++ defusedxml-0.4.1/other/exploit_webdav.py	2015-07-22 11:23:15.893964297 +0000
+@@ -9,7 +9,7 @@
+ import httplib
+ 
+ if len(sys.argv) != 2:
+-    sys.exit("{} http://user:password@host:port/".format(sys.argv[0]))
++    sys.exit("{0} http://user:password@host:port/".format(sys.argv[0]))
+ 
+ url = urlparse.urlparse(sys.argv[1])
+ 
+diff -ru defusedxml-0.4.1-orig/other/exploit_xmlrpc.py defusedxml-0.4.1/other/exploit_xmlrpc.py
+--- defusedxml-0.4.1-orig/other/exploit_xmlrpc.py	2015-07-17 05:28:36.502213030 +0000
++++ defusedxml-0.4.1/other/exploit_xmlrpc.py	2015-07-22 11:23:59.536230889 +0000
+@@ -7,7 +7,7 @@
+ import urllib2
+ 
+ if len(sys.argv) != 2:
+-    sys.exit("{} url".format(sys.argv[0]))
++    sys.exit("{0} url".format(sys.argv[0]))
+ 
+ url = sys.argv[1]
+ 
+@@ -32,7 +32,7 @@
+ 
+ req = urllib2.Request(url, data=xml, headers=headers)
+ 
+-print("Sending request to {}".format(url))
++print("Sending request to {0}".format(url))
+ 
+ resp = urllib2.urlopen(req)
+

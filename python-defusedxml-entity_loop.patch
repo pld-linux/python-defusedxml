@@ -1,0 +1,52 @@
+diff -ru defusedxml-0.4.1-orig/tests.py defusedxml-0.4.1/tests.py
+--- defusedxml-0.4.1-orig/tests.py	2015-07-17 05:28:36.501213026 +0000
++++ defusedxml-0.4.1/tests.py	2015-07-17 05:21:51.633843568 +0000
+@@ -133,11 +133,12 @@
+             self.iterparse(self.xml_simple_ns)
+ 
+     def test_entities_forbidden(self):
+-        self.assertRaises(EntitiesForbidden, self.parse, self.xml_bomb)
++        self.assertRaises((EntitiesForbidden, XMLSyntaxError),
++                          self.parse, self.xml_bomb)
+         self.assertRaises(EntitiesForbidden, self.parse, self.xml_quadratic)
+         self.assertRaises(EntitiesForbidden, self.parse, self.xml_external)
+ 
+-        self.assertRaises(EntitiesForbidden, self.parseString,
++        self.assertRaises((EntitiesForbidden, XMLSyntaxError), self.parseString,
+                           self.get_content(self.xml_bomb))
+         self.assertRaises(EntitiesForbidden, self.parseString,
+                           self.get_content(self.xml_quadratic))
+@@ -157,8 +158,8 @@
+                           forbid_entities=False)
+ 
+     def test_dtd_forbidden(self):
+-        self.assertRaises(DTDForbidden, self.parse, self.xml_bomb,
+-                          forbid_dtd=True)
++        self.assertRaises((DTDForbidden, XMLSyntaxError), self.parse,
++                          self.xml_bomb, forbid_dtd=True)
+         self.assertRaises(DTDForbidden, self.parse, self.xml_quadratic,
+                           forbid_dtd=True)
+         self.assertRaises(DTDForbidden, self.parse, self.xml_external,
+@@ -166,7 +167,7 @@
+         self.assertRaises(DTDForbidden, self.parse, self.xml_dtd,
+                           forbid_dtd=True)
+ 
+-        self.assertRaises(DTDForbidden, self.parseString,
++        self.assertRaises((DTDForbidden, XMLSyntaxError), self.parseString,
+                           self.get_content(self.xml_bomb),
+                           forbid_dtd=True)
+         self.assertRaises(DTDForbidden, self.parseString,
+@@ -355,8 +356,11 @@
+         pass
+ 
+     def test_restricted_element1(self):
+-        tree = self.module.parse(self.xml_bomb, forbid_dtd=False,
+-                                 forbid_entities=False)
++        try:
++            tree = self.module.parse(self.xml_bomb, forbid_dtd=False,
++                                     forbid_entities=False)
++        except XMLSyntaxError:
++            return
+         root = tree.getroot()
+         self.assertEqual(root.text, None)
+ 

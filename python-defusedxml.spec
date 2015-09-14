@@ -8,7 +8,7 @@
 Summary:	XML bomb protection for Python stdlib modules
 Name:		python-%{module}
 Version:	0.4.1
-Release:	3
+Release:	4
 License:	PSF
 Group:		Libraries/Python
 Source0:	https://pypi.python.org/packages/source/d/defusedxml/defusedxml-%{version}.tar.gz

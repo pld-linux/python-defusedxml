@@ -16,12 +16,13 @@ Source0:	https://pypi.python.org/packages/source/d/defusedxml/defusedxml-%{versi
 Patch0:		python-defusedxml-entity_loop.patch
 Patch1:		python-defusedxml-format_strings.patch
 URL:		https://pypi.python.org/pypi/defusedxml
+BuildRequires:	rpmbuild(macros) >= 1.710
 %if %{with python2}
 BuildRequires:	python-setuptools
 %endif
 %if %{with python3}
-BuildRequires:	python3-setuptools
 BuildRequires:	python3-modules
+BuildRequires:	python3-setuptools
 %endif
 Requires:	python-modules
 BuildArch:	noarch

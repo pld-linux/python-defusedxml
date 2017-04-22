@@ -36,17 +36,3 @@ diff -ru defusedxml-0.4.1-orig/tests.py defusedxml-0.4.1/tests.py
                            self.get_content(self.xml_bomb),
                            forbid_dtd=True)
          self.assertRaises(DTDForbidden, self.parseString,
-@@ -355,8 +356,11 @@
-         pass
- 
-     def test_restricted_element1(self):
--        tree = self.module.parse(self.xml_bomb, forbid_dtd=False,
--                                 forbid_entities=False)
-+        try:
-+            tree = self.module.parse(self.xml_bomb, forbid_dtd=False,
-+                                     forbid_entities=False)
-+        except XMLSyntaxError:
-+            return
-         root = tree.getroot()
-         self.assertEqual(root.text, None)
- 

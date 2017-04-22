@@ -5,14 +5,15 @@
 %bcond_without	python3 # CPython 3.x module
 
 %define 	module	defusedxml
+%define		pypi_name	defusedxml
 Summary:	XML bomb protection for Python stdlib modules
 Name:		python-%{module}
-Version:	0.4.1
-Release:	9
+Version:	0.5.0
+Release:	1
 License:	PSF
 Group:		Libraries/Python
-Source0:	https://pypi.python.org/packages/source/d/defusedxml/defusedxml-%{version}.tar.gz
-# Source0-md5:	230a5eff64f878b392478e30376d673a
+Source0:	https://files.pythonhosted.org/packages/source/d/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
+# Source0-md5:	7ff1501366c6d1dcd2de8514dc2b755e
 Patch0:		python-defusedxml-entity_loop.patch
 Patch1:		python-defusedxml-format_strings.patch
 URL:		https://pypi.python.org/pypi/defusedxml

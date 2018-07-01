@@ -9,7 +9,7 @@
 Summary:	XML bomb protection for Python stdlib modules
 Name:		python-%{module}
 Version:	0.5.0
-Release:	1
+Release:	2
 License:	PSF
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/d/%{pypi_name}/%{pypi_name}-%{version}.tar.gz

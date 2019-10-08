@@ -1,48 +1,59 @@
 #
 # Conditional build:
-%bcond_with	tests	# do perform tests (harmless fail with current python)
+%bcond_with	tests	# do perform tests (one test fails with python 2.7)
 %bcond_without	python2 # CPython 2.x module
 %bcond_without	python3 # CPython 3.x module
 
 %define 	module	defusedxml
 %define		pypi_name	defusedxml
 Summary:	XML bomb protection for Python stdlib modules
+Summary(pl.UTF-8):	Zabezpieczenie przed bombami XML dla modułów biblioteki standardowej Pythona
 Name:		python-%{module}
-Version:	0.5.0
-Release:	2
-License:	PSF
+Version:	0.6.0
+Release:	1
+License:	PSF v2
 Group:		Libraries/Python
-Source0:	https://files.pythonhosted.org/packages/source/d/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
-# Source0-md5:	7ff1501366c6d1dcd2de8514dc2b755e
-Patch0:		python-defusedxml-entity_loop.patch
-Patch1:		python-defusedxml-format_strings.patch
-URL:		https://pypi.python.org/pypi/defusedxml
-BuildRequires:	rpmbuild(macros) >= 1.710
+#Source0Download: https://pypi.org/simple/defusedxml/
+Source0:	https://files.pythonhosted.org/packages/source/d/defusedxml/%{pypi_name}-%{version}.tar.gz
+# Source0-md5:	a59741f675c4cba649de40a99f732897
+Patch0:		python-defusedxml-format_strings.patch
+URL:		https://pypi.org/project/defusedxml/
+BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with python2}
+BuildRequires:	python-modules >= 1:2.7
 BuildRequires:	python-setuptools
 %endif
 %if %{with python3}
-BuildRequires:	python3-modules
+BuildRequires:	python3-modules >= 1:3.5
 BuildRequires:	python3-setuptools
 %endif
-Requires:	python-modules
+Requires:	python-modules >= 1:2.7
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 XML bomb protection for Python stdlib modules.
 
+%description -l pl.UTF-8
+Zabezpieczenie przed bombami XML dla modułów biblioteki standardowej
+Pythona.
+
 %package -n python3-%{module}
 Summary:	XML bomb protection for Python stdlib modules
+Summary(pl.UTF-8):	Zabezpieczenie przed bombami XML dla modułów biblioteki standardowej Pythona
 Group:		Libraries/Python
+Requires:	python3-modules >= 1:3.5
 
 %description -n python3-%{module}
 XML bomb protection for Python stdlib modules.
 
+%description -n python3-%{module} -l pl.UTF-8
+Zabezpieczenie przed bombami XML dla modułów biblioteki standardowej
+Pythona.
+
 %prep
 %setup -q -n %{module}-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %build
 %if %{with python2}
@@ -75,9 +86,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.txt CHANGES.txt
 %dir %{py_sitescriptdir}/%{module}
 %{py_sitescriptdir}/%{module}/*.py[co]
-%if "%{py_ver}" > "2.4"
 %{py_sitescriptdir}/%{module}-%{version}-py*.egg-info
-%endif
 %endif
 
 %if %{with python3}

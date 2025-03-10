@@ -10,7 +10,7 @@ Summary:	XML bomb protection for Python stdlib modules
 Summary(pl.UTF-8):	Zabezpieczenie przed bombami XML dla modułów biblioteki standardowej Pythona
 Name:		python-%{module}
 Version:	0.7.1
-Release:	4
+Release:	5
 License:	PSF v2
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/defusedxml/

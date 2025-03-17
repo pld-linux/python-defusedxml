@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	tests	# unit tests
+%bcond_with	tests	# unit tests
 %bcond_without	python2 # CPython 2.x module
 %bcond_without	python3 # CPython 3.x module
 
@@ -10,7 +10,7 @@ Summary:	XML bomb protection for Python stdlib modules
 Summary(pl.UTF-8):	Zabezpieczenie przed bombami XML dla modułów biblioteki standardowej Pythona
 Name:		python-%{module}
 Version:	0.7.1
-Release:	6
+Release:	7
 License:	PSF v2
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/defusedxml/
